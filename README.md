@@ -58,7 +58,7 @@ For example:
 playTone("C1")
 ```
 Now "C1" means, "play a C on the **_first_** scale". To play a Eb on the eighth scale you would use "Eb8". Or A# on the third scale would be "A#3". It's that simple.
-Numbers range from 0 to 8. Every tone has a #(sharp) _except_ E and B which have b(flat).
+Numbers range from 0 to 8. The higher the scale, the higher the pitch. Every tone has a #(sharp) _except_ E and B which have b(flat).
 
 Now if I haven't lost you yet in the musical jargon, lets look at another way to make sounds.
 
@@ -74,7 +74,7 @@ For example:
 ```js
 playTone("C")
 ```
-The way chords work is that they play three tones that together equal "C". Currently all chords available are based on tones in the fourth scale. Chords from other scales coming in a later release
+The way chords work is that they play three tones that together equal "C". Currently all chords available are based on tones in the fourth scale. Chords from other scales coming in a later release.
 You can play major chords like "G", "E" and "A", sharp chords such as "C#", "D# and "G# or even minor chords like "Em", "Cm" and "Am"!
 
 ### Style
