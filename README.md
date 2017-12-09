@@ -43,7 +43,7 @@ And now introducing...
 
 ### The Parameters
 
-<code>playTone(tone <i>or</i> chord, style, duration)</code>
+<code>playTone(tone <i>or</i> chord <i>or</i> frequency, style, duration)</code>
 
 ### Tone
 #### You can select any tone that is on the piano, like seriously
@@ -77,12 +77,22 @@ playTone("C")
 The way chords work is that they play three tones that together equal "C". Currently all chords available are based on tones in the fourth scale. Chords from other scales coming in a later release.
 You can play major chords like "G", "E" and "A", sharp chords such as "C#", "D# and "G# or even minor chords like "Em", "Cm" and "Am"!
 
+### Frequency
+#### For a tone that isn't predefined you can specify the Hz
+To use a frequency, just type the quantity of Hz as a number:
+```js
+playTone(440)
+```
+For reference, 440 Hz is the equivalent of playing "A4" 
+
 ### Style
-#### Four simple styles to choose from 
+#### There are four styles to choose from: 
 - Sine
 - Square
 - Triangle
 - Sawtooth
+
+These styles are based on the sound wave pattern and are somewhat explained by this chart:
 
 ![Chart](https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Waveforms.svg/600px-Waveforms.svg.png)
 
@@ -93,6 +103,8 @@ playTone("Eb4", "square");
 playTone("A#6", "triangle");
 playTone("E", "sawtooth");
 ```
+Play around with them and see which one you like best for your project.
+
 When you don't specify which one to use it will default to "sine".
 
 ### Duration
