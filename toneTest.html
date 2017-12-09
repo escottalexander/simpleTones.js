@@ -1,7 +1,72 @@
 <head>
-<script src="simpleTonesMin.js"></script>
+<script src="simpleTones.js"></script>
 </head>
 
+
 <div>
-	<button onClick='playTone(tone["C4"])'>hear sound</button>
+	<h3>Example of tones</h3>
+<div class="row">
+	<button onClick='playTone(tone["C3"])'> C3 </button>
+	<button onClick='playTone(tone["D3"])'> D3 </button>
+	<button onClick='playTone(tone["E7"])'> E7 </button>
+	<button onClick='playTone(tone["F2"])'> F2 </button>
+	<button onClick='playTone(tone["G1"])'> G1 </button>
+	<button onClick='playTone(tone["A6"])'> A6 </button>
+	<button onClick='playTone(tone["B6"])'> B6 </button>
+</div>
+<h3>Example of sharp and flat tones</h3>
+<div class="row">
+	<button onClick='playTone(tone["C#8"])'> C#8 </button>
+	<button onClick='playTone(tone["D#2"])'> D#2 </button>
+	<button onClick='playTone(tone["Eb3"])'> Eb3 </button>
+	<button onClick='playTone(tone["F#4"])'> F#4 </button>
+	<button onClick='playTone(tone["G#5"])'> G#5 </button>
+	<button onClick='playTone(tone["A#6"])'> A#6 </button>
+	<button onClick='playTone(tone["Bb7"])'> Bb7 </button>
+</div>
+	<h3>All major chords</h3>
+<div class="row">
+	<button onClick='playTone(chord["C"])'> C </button>
+	<button onClick='playTone(chord["D"])'> D </button>
+	<button onClick='playTone(chord["E"])'> E </button>
+	<button onClick='playTone(chord["F"])'> F </button>
+	<button onClick='playTone(chord["G"])'> G </button>
+	<button onClick='playTone(chord["A"])'> A </button>
+	<button onClick='playTone(chord["B"])'> B </button>
+</div>
+<h3>All sharp chords</h3>
+<div class="row">
+	<button onClick='playTone(chord["C#"])'> C# </button>
+	<button onClick='playTone(chord["D#"])'> D# </button>
+	<button onClick='playTone(chord["F#"])'> F# </button>
+	<button onClick='playTone(chord["G#"])'> G# </button>
+	<button onClick='playTone(chord["A#"])'> A# </button>
+</div>
+<h3>All minor chords</h3>
+<div class="row">
+	<button onClick='playTone(chord["Cm"])'> Cm </button>
+	<button onClick='playTone(chord["Dm"])'> Dm </button>
+	<button onClick='playTone(chord["Em"])'> Em </button>
+	<button onClick='playTone(chord["Fm"])'> Fm </button>
+	<button onClick='playTone(chord["Gm"])'> Gm </button>
+	<button onClick='playTone(chord["Am"])'> Am </button>
+	<button onClick='playTone(chord["Bm"])'> Bm </button>
+</div>
+<h3>Example of style changes</h3>
+<div class="row">
+<button onClick='playTone(chord["C"], "sine")'> "sine" </button>
+	<button onClick='playTone(chord["C"], "square")'> "square" </button>
+	<button onClick='playTone(chord["C"], "triangle")'> "triangle" </button>
+	<button onClick='playTone(chord["C"], "sawtooth")'> "sawtooth" </button>
+</div>
+<h3>Example of duration changes</h3>
+<div class="row">
+<button onClick='playTone(chord["C"],"sine",1)'> 1 </button>
+	<button onClick='playTone(chord["C"],"sine",2)'> 2 </button>
+	<button onClick='playTone(chord["C"],"sine",3)'> 3 </button>
+	<button onClick='playTone(chord["C"],"sine",4)'> 4 </button>
+	<button onClick='playTone(chord["C"],"sine",5)'> 5 </button>
+</div>
+
+
 </div>

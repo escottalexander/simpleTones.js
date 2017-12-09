@@ -186,6 +186,9 @@ playTone = (frequency, type, duration) => {
 	if (duration === undefined) {
 		duration = 1.3;
 	}
+	if (frequency === undefined) {
+		frequency = 440;
+	}
 	o = context.createOscillator();
 	g = context.createGain();
 	o.connect(g);
