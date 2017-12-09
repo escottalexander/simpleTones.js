@@ -1,4 +1,4 @@
-# simpleTones.js
+![simpleTonesLogo](https://gdurl.com/z7Vg)
 
 ## The Premier Library For Easy Browser Based Tones
 
