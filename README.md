@@ -103,6 +103,7 @@ BuzzerHit() {
 //Annoyingly long tone
 playTone("A#2", "sawtooth", 5.4)
 }
+```
 
 ### Limitations
 
