@@ -2,7 +2,7 @@
 
 ## The Premier Library For Easy Browser Based Tones
 
-The goal of simpleTones.js is to provide every JavaScript developer with a lightweight(only 3kb) solution to creating interactive tones in their web applications. This documentation has been written in hopes that the least experienced developer can read, understand and go on to do great things. You can check out several examples at [SlayApps](https://slayapps.com/simpletones-js/).
+The goal of simpleTones.js is to provide every developer with a lightweight(only 3kb) solution to creating interactive tones in their web applications. This documentation has been written in hopes that the least experienced developer can read, understand and go on to do great things. This library is based on the Web Audio API and has the same browser limitations. You can check out several examples at [SlayApps](https://slayapps.com/simpletones-js/).
 
 ### Setup is simple 
 Just add the simpleTones.js file to your file directory 
