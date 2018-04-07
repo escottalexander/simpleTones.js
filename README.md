@@ -2,7 +2,14 @@
 
 ## The Premier Library For Easy Browser Based Tones
 
-The goal of simpleTones.js is to provide every developer with a lightweight(only 3kb) solution to creating interactive tones in their web applications. This documentation has been written in hopes that the least experienced developer can read, understand and go on to do great things. This library is based on the Web Audio API and has the same browser limitations. You can check out several examples at [SlayApps](https://slayapps.com/simpletones-js/).
+The goal of simpleTones.js is to provide every developer with a lightweight(only 3kb) solution to creating interactive tones in their web applications. This documentation has been written in hopes that the least experienced developer can read, understand and go on to do great things. This library is based on the Web Audio API and has the same browser limitations. You can check out several examples at [SlayApps.com/simpleTones-js](https://slayapps.com/simpletones-js/).
+
+### Table of Contents
+1. [Initial Setup](#setup-is-simple)
+2. [Implementation](#implementation)
+3. [Parameters](#the-parameters)
+4. [Limitations](#limitations)
+5. [Contributing](#helpful-resources-for-contributing)
 
 ### Setup is simple 
 Just add the simpleTones.js file to your file directory 
@@ -21,7 +28,7 @@ Now you are ready to make some noise!
 
 ### Implementation 
 
-Super simple implementation - Just use `playTone()` anywhere in your code!
+Super simple implementation - To get started, just use `playTone()` anywhere in your code where you want it to trigger a sound.
 
 For example:
 
@@ -120,3 +127,13 @@ playTone("A#2", "sawtooth", 5.4)
 ### Limitations
 
 The simpleTones.js library has been built on top of the [WebAudioAPI](https://webaudio.github.io/web-audio-api/) which currently has issues with [older browsers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API#Browser_compatibility). Keep this in mind as you use the library.
+
+### Helpful Resources For Contributing
+
+There are lots of ways that simpleTones.js could be improved and optimized. If you have an idea or would like to learn and apply the Web Audio API to more of the codebase, we would love to come along side you and help you leave your mark on this project. 
+
+[CSS-Tricks Introduction to Web Audio API](https://css-tricks.com/introduction-web-audio-api/)
+[MDN Web Docs - Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
+[Piano Key Frequencies PDF](http://www.ece.iastate.edu/~alexs/classes/2016_Spring_575/HW/HW5/files/piano-key-freq-wikipedia.pdf)
+
+Please keep in mind that we want this project to stay as simple as possible so that new developers can easily learn and utilize browser based sounds without having to fully understand the Web Audio API.
