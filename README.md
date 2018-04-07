@@ -135,5 +135,6 @@ There are lots of ways that simpleTones.js could be improved and optimized. If y
 * [CSS-Tricks Introduction to Web Audio API](https://css-tricks.com/introduction-web-audio-api/)
 * [MDN Web Docs - Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
 * [Piano Key Frequencies PDF](http://www.ece.iastate.edu/~alexs/classes/2016_Spring_575/HW/HW5/files/piano-key-freq-wikipedia.pdf)
+* [Generate Sounds Programmatically With Javascript](http://marcgg.com/blog/2016/11/01/javascript-audio/)
 
 Please keep in mind that we want this project to stay as simple as possible so that new developers can easily learn and utilize browser based sounds without having to fully understand the Web Audio API.
