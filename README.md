@@ -26,7 +26,7 @@ That's it!!!
 
 Now you are ready to make some noise!
 
-### Implementation 
+### Basic Implementation 
 
 Super simple implementation - To get started, just use `playTone()` anywhere in your code where you want it to trigger a sound.
 
