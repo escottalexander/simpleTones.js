@@ -5,6 +5,8 @@ var o = null;
 var g = null;
 
 //Sound Storage 
+//If you add your own sounds here, please consider 
+//submitting a pull request with your additional sounds
 var soundObj = {
 	bump:["triangle",100,0.8,333,0.2,100,0.4,80,0.7],
 	buzzer:["sawtooth",40,0.8, 100,0.3 ,110, 0.5],
