@@ -167,10 +167,19 @@ var isFlatTone = tone => /\wb\d/.test(tone);
  * @param { String } tone flat tone
  * @returns { String } corresponding sharp tone
  */
-function convertFlatToSharp (tone) {
-	var keys = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-	var newKey = keys[keys.indexOf(tone[0]) + 1] || keys[0];
-	return tone.replace(/\wb(\d)/, newKey + '#$1');
+function downFlatTone (tone) {
+	var flatMap = {
+		'Ab': 'G#',
+		'Bb': 'A#',
+		'Cb': 'B',
+		'D': 'C#',
+		'E': 'D#',
+		'F': 'E',
+		'G': 'F#'
+	};
+	toneKey = tone.replace(/\d/, '');
+	toneOctave = tone.replace(/\D/g, '');
+	return flatMap[toneKey] + (toneKey === 'Cb' ? Number(toneOctave) - 1 : toneOctave)
 }
 
 //Primary function
@@ -194,7 +203,7 @@ playTone = (frequency, type, duration) => {
 			completeChord(chord[frequency][1], type, duration);
 			completeChord(chord[frequency][2], type, duration);
 		} else if (isFlatTone(frequency)) {
-			 o.frequency.value = tone[convertFlatToSharp(frequency)];
+			 o.frequency.value = tone[downFlatTone(frequency)];
 		} else if (tone[frequency]) {
 			o.frequency.value = tone[frequency];
 		}
