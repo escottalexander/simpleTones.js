@@ -182,6 +182,8 @@ function downFlatTone (tone) {
 	return flatMap[toneKey] + (toneKey === 'Cb' ? Number(toneOctave) - 1 : toneOctave)
 }
 
+const VOLUME_CURVE = [1.0, 0.61, 0.37, 0.22, 0.14, 0.08, 0.05, 0.0];
+
 //Primary function
 playTone = (frequency, type, duration) => {
 	if (type === undefined) {
@@ -216,7 +218,8 @@ playTone = (frequency, type, duration) => {
 	}
 	g.connect(context.destination);
 	o.start(0);
-	g.gain.exponentialRampToValueAtTime(0.0001,context.currentTime + duration);
+	//g.gain.exponentialRampToValueAtTime(0.0001,context.currentTime + duration);
+	g.gain.setValueCurveAtTime(VOLUME_CURVE, context.currentTime, duration);
 }
 
 //This function helps complete chords and should not be used by itself
@@ -228,7 +231,7 @@ completeChord = (frequency, type, duration) => {
 	osc.frequency.value = frequency;
 	gn.connect(context.destination);
 	osc.start(0);
-	gn.gain.exponentialRampToValueAtTime(0.0001,context.currentTime + duration);
+	gn.gain.setValueCurveAtTime(VOLUME_CURVE, context.currentTime, duration);
 }
 
 
@@ -248,7 +251,7 @@ for (var i = 3; i < arguments.length; i += 2) {
 	oscillatorNode.frequency.exponentialRampToValueAtTime(arguments[i], context.currentTime + arguments[i+1]);
 }
 	gainNode.gain.setValueAtTime(0.3, context.currentTime);
-	gainNode.gain.exponentialRampToValueAtTime(0.1, context.currentTime +  0.5);
+	gainNode.gain.setValueCurveAtTime(VOLUME_CURVE, context.currentTime, 2.0);
   
 	oscillatorNode.connect(gainNode);
 	gainNode.connect(context.destination);
