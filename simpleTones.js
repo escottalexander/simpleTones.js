@@ -1,13 +1,17 @@
+// https://github.com/escottalexander/simpleTones.js
+
 //Create Audio Context
-var AudioContext = window.AudioContext || window.webkitAudioContext;
-var context = new AudioContext();
-var o = null;
-var g = null;
+let AudioContext = window.AudioContext || window.webkitAudioContext
+let context = new AudioContext()
+// const compressorTest = context.createDynamicsCompressor()
+// compressorTest.connect(context.destination)
+let o = null
+let g = null
 
 //Sound Storage 
 //If you add your own sounds here, please consider 
 //submitting a pull request with your additional sounds
-var soundObj = {
+const soundObj = {
 	bump:["triangle",100,0.8,333,0.2,100,0.4,80,0.7],
 	buzzer:["sawtooth",40,0.8, 100,0.3 ,110, 0.5],
 	zip:["sawtooth",75,0.8,85,0.2,95,0.4,110,0.6,120,0.7,100,0.8],
@@ -20,7 +24,7 @@ var soundObj = {
 }
 
 //Tone Storage
-var tone = {
+const tone = {
 	'C0': 16.35,
 	'C#0': 17.32,
 	'D0': 18.35,
@@ -133,7 +137,8 @@ var tone = {
 }
 
 // Chord Storage
-var chord = {
+const chord = {
+	// C4 , E4 , G4
 	'C': [261.6, 329.6, 392.0],
 	'Cm': [261.6, 311.1, 392.0],
 	'C#': [277.2, 349.2, 415.3],
@@ -155,111 +160,131 @@ var chord = {
 	'Bm': [493.9, 587.330, 739.989]
 }
 
-/**
- * This function checks if given tone is flat
- * @param { String } tone given tone
- * @returns { Boolean } whether it is or isn't flat
- */
-var isFlatTone = tone => /\wb\d/.test(tone);
 
-/**
- * This functions corresponds a flat tone notation, to a sharp musical acident
- * @param { String } tone flat tone
- * @returns { String } corresponding sharp tone
- */
-function downFlatTone (tone) {
-	var flatMap = {
-		'Ab': 'G#',
-		'Bb': 'A#',
-		'Cb': 'B',
-		'D': 'C#',
-		'E': 'D#',
-		'F': 'E',
-		'G': 'F#'
-	};
-	toneKey = tone.replace(/\d/, '');
-	toneOctave = tone.replace(/\D/g, '');
-	return flatMap[toneKey] + (toneKey === 'Cb' ? Number(toneOctave) - 1 : toneOctave)
+const Tone = {
+	NOTES: ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'],
+
+	/**
+	 * This function calculates tone
+	 * @param { String } tone and scale
+	 * @returns { Number } of tone frequency
+	 */
+	getTone(note='C') {
+		if (this.isFlatTone(note)) {note = this.downFlatTone(note)}
+		let index = null
+		this.NOTES.forEach((NOTE,i) => {
+			if (note.includes(NOTE)) index = i
+		})
+		if (index===null) {throw new Error('Input contains no note, returning C instead.')}
+		let level = 4
+		for (let i=0;i<=8;i++) {
+			if (note.includes(i)) level = i
+		}
+		return 440*Math.pow(2,(level*12+index-57)/12)
+	},
+
+
+	/**
+	 * This function checks if given tone is flat
+	 * @param { String } tone given tone
+	 * @returns { Boolean } whether it is or isn't flat
+	 */
+	isFlatTone(tone) {/\wb\d/.test(tone)},
+
+	/**
+	 * This functions corresponds a flat tone notation, to a sharp musical acident
+	 * @param { String } tone flat tone
+	 * @returns { String } corresponding sharp tone
+	 */
+	downFlatTone(tone) {
+		var flatMap = {
+			'Cb': 'B',
+			'Db': 'C#',
+			'Eb': 'D#',
+			'Fb': 'E',
+			'Gb': 'F#',
+			'Ab': 'G#',
+			'Bb': 'A#',
+		}
+		toneKey = tone.replace(/\d/, '')
+		toneOctave = tone.replace(/\D/g, '')
+		return flatMap[toneKey] + (toneKey === 'Cb' ? Number(toneOctave) - 1 : toneOctave)
+	}
 }
 
-const VOLUME_CURVE = [1.0, 0.61, 0.37, 0.22, 0.14, 0.08, 0.05, 0.0];
+
+const VOLUME_CURVE = [1.0, 0.61, 0.37, 0.22, 0.14, 0.08, 0.05, 0.0]
 
 //Primary function
-playTone = (frequency, type, duration) => {
-	if (type === undefined) {
-		type = "sine";
-	}
-	if (duration === undefined) {
-		duration = 1.3;
-	}
-	if (frequency === undefined) {
-		frequency = 440;
-	}
-	o = context.createOscillator();
-	g = context.createGain();
-	o.connect(g);
-	o.type = type;
+const playTone = (frequency = 440, type = 'sine', duration = 1.3) => {
+	o = context.createOscillator()
+	g = context.createGain()
+	o.connect(g)
+	o.type = type
 	if (typeof frequency === "string") {
 		if (chord[frequency]) {
-			o.frequency.value = chord[frequency][0];
-			completeChord(chord[frequency][1], type, duration);
-			completeChord(chord[frequency][2], type, duration);
-		} else if (isFlatTone(frequency)) {
-			 o.frequency.value = tone[downFlatTone(frequency)];
-		} else if (tone[frequency]) {
-			o.frequency.value = tone[frequency];
+			o.frequency.value = chord[frequency][0]
+			completeChord(chord[frequency][1], type, duration)
+			completeChord(chord[frequency][2], type, duration)
+		} else {
+			o.frequency.value = Tone.getTone(frequency)
 		}
 	} else if (typeof frequency === "object") {
-		o.frequency.value = frequency[0];
-		completeChord(frequency[1], type, duration);
-		completeChord(frequency[2], type, duration);
+		o.frequency.value = frequency[0]
+		completeChord(frequency[1], type, duration)
+		completeChord(frequency[2], type, duration)
 	} else {
-		o.frequency.value = frequency;
+		o.frequency.value = frequency
 	}
-	g.connect(context.destination);
-	o.start(0);
-	//g.gain.exponentialRampToValueAtTime(0.0001,context.currentTime + duration);
-	g.gain.setValueCurveAtTime(VOLUME_CURVE, context.currentTime, duration);
+	g.connect(context.destination)
+	o.start(0)
+	//g.gain.exponentialRampToValueAtTime(0.0001,context.currentTime + duration)
+	g.gain.setValueCurveAtTime(VOLUME_CURVE, context.currentTime, duration)
 }
 
 //This function helps complete chords and should not be used by itself
-completeChord = (frequency, type, duration) => {
-	osc = context.createOscillator();
-	gn = context.createGain();
-	osc.connect(gn);
-	osc.type = type;
-	osc.frequency.value = frequency;
-	gn.connect(context.destination);
-	osc.start(0);
-	gn.gain.setValueCurveAtTime(VOLUME_CURVE, context.currentTime, duration);
+const completeChord = (frequency, type, duration) => {
+	osc = context.createOscillator()
+	gn = context.createGain()
+	osc.connect(gn)
+	osc.type = type
+	osc.frequency.value = frequency
+	gn.connect(context.destination)
+	osc.start(0)
+	gn.gain.setValueCurveAtTime(VOLUME_CURVE, context.currentTime, duration)
 }
 
 
 //This function plays sounds
 function playSound(waveType,startFreq,endTime) {
 	if (soundObj[arguments[0]] && arguments.length === 1) {
-		var soundName = arguments[0];
-		playSound(...soundObj[soundName]);
-	}  else {
-	var oscillatorNode = context.createOscillator();
-	var gainNode = context.createGain();
+		var soundName = arguments[0]
+		playSound(...soundObj[soundName])
+	} else {
+	var oscillatorNode = context.createOscillator()
+	var gainNode = context.createGain()
 	
-	oscillatorNode.type = waveType;
-	oscillatorNode.frequency.setValueAtTime(startFreq, context.currentTime);
+	oscillatorNode.type = waveType
+	oscillatorNode.frequency.setValueAtTime(startFreq, context.currentTime)
+		
+	for (var i = 3; i < arguments.length; i += 2) {
+		oscillatorNode.frequency.exponentialRampToValueAtTime(arguments[i], context.currentTime + arguments[i+1])
+	}
+	gainNode.gain.setValueAtTime(0.3, context.currentTime)
+	gainNode.gain.setValueCurveAtTime(VOLUME_CURVE, context.currentTime, 2.0)
 	
-for (var i = 3; i < arguments.length; i += 2) {
-	oscillatorNode.frequency.exponentialRampToValueAtTime(arguments[i], context.currentTime + arguments[i+1]);
-}
-	gainNode.gain.setValueAtTime(0.3, context.currentTime);
-	gainNode.gain.setValueCurveAtTime(VOLUME_CURVE, context.currentTime, 2.0);
-  
-	oscillatorNode.connect(gainNode);
-	gainNode.connect(context.destination);
-  
-	oscillatorNode.start();
-	oscillatorNode.stop(context.currentTime + endTime);
-  }
+	oscillatorNode.connect(gainNode)
+	gainNode.connect(context.destination)
+	
+	oscillatorNode.start()
+	oscillatorNode.stop(context.currentTime + endTime)
+	}
 }
 
 
+function init() {
+	AudioContext = window.AudioContext || window.webkitAudioContext
+	context = new AudioContext()
+}
 
+// window.start.addEventListener('click', function(e) {init()})
