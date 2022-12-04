@@ -2,7 +2,9 @@
 
 ## The Premier Library For Easy Browser Based Tones - No Audio Files Required!
 
-The goal of simpleTones.js is to provide every developer with a lightweight solution for creating interactive tones in their web applications. This documentation has been written in hopes that the least experienced developer can read, understand and go on to do great things. This library is based on the Web Audio API and has the same browser limitations. You can check out several examples at [https://escottalexander.github.io/simpleTones.js/](https://escottalexander.github.io/simpleTones.js/).
+The goal of simpleTones.js is to provide every developer with a lightweight solution for creating interactive tones in their web applications. This documentation has been written in hopes that the least experienced developer can read, understand and go on to do great things. This library is based on the Web Audio API and has the same browser limitations. 
+
+You can check out the documentation at [https://escottalexander.github.io/simpleTones.js/](https://escottalexander.github.io/simpleTones.js/) and several examples at [https://escottalexander.github.io/simpleTones.js/toneTest.html](https://escottalexander.github.io/simpleTones.js/toneTest.html).
 
 ### Table of Contents
 1. [Initial Setup](#setup-is-simple)
