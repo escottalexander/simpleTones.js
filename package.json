@@ -1,0 +1,25 @@
+{
+  "name": "simpletones",
+  "version": "1.0.0",
+  "description": "A simple library for interacting with the Web Audio API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/escottalexander/simpleTones.js.git"
+  },
+  "keywords": [
+    "web audio api",
+    "audio",
+    "sounds",
+    "sound effects"
+  ],
+  "author": "Elliott Alexander",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/escottalexander/simpleTones.js/issues"
+  },
+  "homepage": "https://github.com/escottalexander/simpleTones.js#readme"
+}
